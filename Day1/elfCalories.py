@@ -1,23 +1,17 @@
-MostCalories=0
-ElfWithMostCalories=0
+
+calorieTotals = []
 TotalCaloriesForElf = 0
-CurrentElf = 1
 
 day1Input = open("Day1/Day1Task1Input.txt", "r")
 
 for calorieLine in day1Input:
     if calorieLine.strip() == "":
-        # Check if the Total Calories is more than currently stored
-        if(TotalCaloriesForElf > MostCalories):
-            MostCalories = TotalCaloriesForElf
-            ElfWithMostCalories = CurrentElf
-        # Reset Calories and Increment Elf
+        calorieTotals.append(TotalCaloriesForElf)
         TotalCaloriesForElf = 0
-        CurrentElf+=1
-        print("TotalCaloriesForElfReset:"+str(TotalCaloriesForElf)+" for next elf:"+str(CurrentElf))
-        print("MostCalories:"+str(MostCalories)+" is for ElfWithMostCalories:"+str(ElfWithMostCalories))
     else:
-        TotalCaloriesForElf = TotalCaloriesForElf + int(calorieLine)   
-        print("CurrentElf:"+str(CurrentElf)+"CurrentCaloriesLine:"+str(calorieLine)+"TotalCaloriesForElf:"+str(TotalCaloriesForElf))
-
-print("MostCalories:"+str(MostCalories)+" is for ElfWithMostCalories:"+str(ElfWithMostCalories))
+        TotalCaloriesForElf = TotalCaloriesForElf + int(calorieLine)
+calorieTotals.sort()
+TopThreeCalorieTotal = calorieTotals[-1] + calorieTotals[-2] + calorieTotals[-3]
+print("MostCalories:"+str(calorieTotals[-1]))
+print("SecondMostCalories:"+str(calorieTotals[-2])+" ThirdMostCalories:"+str(calorieTotals[-3]))
+print("TopThreeCalories:"+str(TopThreeCalorieTotal))
